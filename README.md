@@ -4,12 +4,12 @@ Stowly is a full-stack MERN web app that combines personal cloud storage, a zero
 
 ## Dashboard map
 
-| Area | Tabs |
-| --- | --- |
-| Workspace | Home Base (overview), My Stash (files), Just Opened (recent), Pinned (starred), Smart Shelves (smart collections), Drop Boxes, Space Pulse (storage insights), Recycle Bin (trash) |
-| Keyring (password vault) | All Keys, Top Keys (favorites), Key Groups (categories), New Key (add password), Key Forge (password generator), Keyring Settings (vault settings) |
-| Settings | Profile, Shield (security), Devices (sessions), Alerts (notifications), Personalize (preferences) |
-| Admin (Control Room) | Overview, Pending Requests, All Members |
+| Area                     | Tabs                                                                                                                                                                               |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workspace                | Home Base (overview), My Stash (files), Just Opened (recent), Pinned (starred), Smart Shelves (smart collections), Drop Boxes, Space Pulse (storage insights), Recycle Bin (trash) |
+| Keyring (password vault) | All Keys, Top Keys (favorites), Key Groups (categories), New Key (add password), Key Forge (password generator), Keyring Settings (vault settings)                                 |
+| Settings                 | Profile, Shield (security), Devices (sessions), Alerts (notifications), Personalize (preferences)                                                                                  |
+| Admin (Control Room)     | Overview, Pending Requests, All Members                                                                                                                                            |
 
 ## Tech stack
 
@@ -19,6 +19,7 @@ Stowly is a full-stack MERN web app that combines personal cloud storage, a zero
 ## Quick start
 
 ### 1. Requirements
+
 - Node.js 18 or newer
 - MongoDB (local install or a free MongoDB Atlas cluster)
 
@@ -32,16 +33,16 @@ cp .env.example .env      # Windows: copy .env.example .env
 
 Open `backend/.env` and set these values:
 
-| Variable | Meaning |
-| --- | --- |
-| `PORT` | API port (default `5000`) |
-| `CLIENT_URL` | Frontend URL for CORS (`http://localhost:5173` in development) |
-| `MONGODB_URI` | `mongodb://127.0.0.1:27017/stowly` for local MongoDB, or your Atlas connection string |
-| `JWT_SECRET` | Long random string. Generate one with `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"` |
-| `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | The first administrator. It is created automatically on the first start |
-| `UPLOAD_DIR` | Where uploaded files are stored (default `./uploads`) |
-| `MAX_FILE_MB` | Largest single upload (default `100`) |
-| `STORAGE_QUOTA_MB` | Storage given to every user (default `1024`) |
+| Variable                                      | Meaning                                                                                                          |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `PORT`                                        | API port (default `5000`)                                                                                        |
+| `CLIENT_URL`                                  | Frontend URL for CORS (`http://localhost:5173` in development)                                                   |
+| `MONGODB_URI`                                 | `mongodb://127.0.0.1:27017/stowly` for local MongoDB, or your Atlas connection string                            |
+| `JWT_SECRET`                                  | Long random string. Generate one with `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"` |
+| `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | The first administrator. It is created automatically on the first start                                          |
+| `UPLOAD_DIR`                                  | Where uploaded files are stored (default `./uploads`)                                                            |
+| `MAX_FILE_MB`                                 | Largest single upload (default `100`)                                                                            |
+| `STORAGE_QUOTA_MB`                            | Storage given to every user (default `1024`)                                                                     |
 
 Start it:
 
@@ -62,6 +63,7 @@ npm run dev
 Open http://localhost:5173. No frontend `.env` is needed in development because Vite proxies `/api` to the backend on port 5000.
 
 ### 4. Try the approval flow
+
 1. Open `/register` and create an account. You will see: "Your account has been created and is waiting for administrator approval."
 2. Try to sign in. You will be told the account is awaiting approval.
 3. Sign in as the administrator (the email and password from `backend/.env`). You land in the Control Room.
