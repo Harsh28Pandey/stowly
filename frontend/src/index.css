@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    min-height: 100%;
+    background-color: #09090B;
+    color: #FAFAFA;
+  }
+  
+  body {
+    @apply bg-[#09090B] text-[#FAFAFA] font-sans antialiased selection:bg-brand-500 selection:text-white;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  /* Force cursor-pointer on ALL interactive elements */
+  button, 
+  [role="button"],
+  [role="menuitem"],
+  [role="switch"],
+  [role="tab"],
+  a, 
+  select,
+  label,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"],
+  input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer !important;
+  }
+
+  /* Disabled controls show cursor-not-allowed */
+  :disabled, [disabled], .disabled {
+    cursor: not-allowed !important;
+  }
+
+  /* Loading buttons show cursor-wait */
+  .is-loading {
+    cursor: wait !important;
+  }
+
+  /* Fix native select options background in dark theme */
+  option {
+    background-color: #0F0F12;
+    color: #FAFAFA;
+  }
+
+  /* Keyboard focus states (WCAG AA compliant) */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #09090B, 0 0 0 2px #6366F1;
+  }
+}
+
+@layer components {
+  /* Buttons - MUST use rounded-2xl per prompt rules */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-3.5 py-2 text-xs font-semibold 
+           transition-all duration-150 cursor-pointer select-none active:scale-[0.98] 
+           disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100;
+  }
+  
+  .btn-primary {
+    @apply btn bg-brand-500 text-white border border-brand-400/30 
+           hover:bg-brand-600 active:bg-brand-700;
+  }
+  
+  .btn-soft {
+    @apply btn bg-[#16161A] text-[#FAFAFA] hover:bg-[#26262B];
+  }
+  
+  .btn-outline {
+    @apply btn border border-[#26262B] bg-[#0F0F12] text-[#FAFAFA] 
+           hover:bg-[#16161A] hover:text-white;
+  }
+  
+  .btn-danger {
+    @apply btn bg-[#F43F5E]/15 text-[#F43F5E] border border-rose-400/30
+           hover:bg-[#F43F5E]/25 active:bg-rose-700;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-xl;
+  }
+
+  .btn-lg {
+    @apply px-5 py-2.5 text-sm rounded-2xl font-bold;
+  }
+
+  /* Form inputs - MUST use rounded-2xl */
+  .input {
+    @apply w-full rounded-2xl border border-[#26262B] bg-[#16161A] px-3.5 py-2 text-xs text-[#FAFAFA] 
+           placeholder-[#9A9AA3] transition-colors duration-150 cursor-text
+           focus:border-brand-500 focus:outline-none;
+  }
+  
+  .label {
+    @apply mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-[#9A9AA3] cursor-pointer;
+  }
+  
+  /* SINGLE SURFACE CARDS - NO NESTING, ONE 1PX BORDER ONLY (#26262B) */
+  .card {
+    @apply rounded-2xl border border-[#26262B] bg-[#0F0F12] text-[#FAFAFA];
+  }
+
+  .card-lg {
+    @apply rounded-3xl border border-[#26262B] bg-[#0F0F12] text-[#FAFAFA];
+  }
+
+  /* Horizontal Stat Strip (Single card with dividers, collapsing to 2x2 grid on mobile) */
+  .stat-strip {
+    @apply card grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#26262B]/60 overflow-hidden;
+  }
+
+  .stat-item {
+    @apply p-3.5 sm:p-4 flex flex-col justify-between h-[78px];
+  }
+
+  /* Rows inside cards - NO nested borders */
+  .row {
+    @apply flex items-center justify-between py-2.5 px-3 rounded-xl transition-colors hover:bg-[#16161A] min-h-[44px];
+  }
+
+  /* Thin internal divider line */
+  .divider {
+    @apply border-t border-[#26262B]/60 my-3;
+  }
+
+  /* Small uppercase section label */
+  .section-label {
+    @apply font-mono text-[10px] font-bold uppercase tracking-widest text-[#9A9AA3] mb-2;
+  }
+
+  /* Plain text chips without borders */
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-[#16161A] px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#9A9AA3];
+  }
+}
+
+/* Custom crisp scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #09090B;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-[#26262B] hover:bg-[#3F3F46];
+}
+
+/* Respect prefers-reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
